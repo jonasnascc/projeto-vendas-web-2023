@@ -25,8 +25,6 @@ export const AuthProvider = ({children})=>{
   
       console.log("login auth", {email, password});
 
-      
-
       const loggedUser ={
         id:"123",
         email,
@@ -41,8 +39,6 @@ export const AuthProvider = ({children})=>{
       }
   
     };
-
-
   
     const logout = () => {
       console.log("logout");

@@ -4,6 +4,7 @@ import React from "react";
 import { Navigate } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { LinkButton } from "./LinkButton";
 
 const menuItems = [
     {
@@ -31,7 +32,19 @@ export const Navbar = () => {
                 }
 
                 <LoginBox>
-                    <Button variant="contained"><Link to="/login" style={{ textDecoration: 'none', color : "inherit"}}>Login</Link></Button>
+                    {
+                        true     ? 
+                            (
+                                <LinkButton to="/login" label="Login"/>
+                            ) 
+                            :
+                            (
+                                <>
+                                    <LinkButton to="/perfil" label="Perfil"/>
+                                    <LinkButton to="/user/anuncios" label="Meus Anúncios" sx={{marginLeft:"10px"}} color="error" />
+                                </>
+                            )
+                    }
                 </LoginBox>
             </Stack>
             
