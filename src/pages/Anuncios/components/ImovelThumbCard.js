@@ -2,7 +2,7 @@ import {Box, Card, CardActionArea, Grid, Stack, Typography } from "@mui/material
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ImovelCard } from "../../ProductPage/components/ImovelCard";
-import { ImovelImage } from "../../ProductPage/components/ImovelImage";
+import { ImovelImage } from "../../../shared/components/ImovelImage";
 
 export const ImovelThumbCard = ({product}) => {
     const [showInfo, setShowInfo] = useState(false);

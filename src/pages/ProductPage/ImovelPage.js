@@ -1,7 +1,7 @@
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import { ImovelCard } from "./components/ImovelCard";
-import { ImovelImage } from "./components/ImovelImage";
+import { ImovelImage } from "../../shared/components/ImovelImage";
 import { ContactBlock } from "./components/ContactBlock";
 
 export const ImovelPage = () => {

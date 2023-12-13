@@ -1,5 +1,5 @@
 import './App.css';
-import { HomePage } from './pages/HomePage/HomePage';
+import { Anuncios} from './pages/Anuncios/Anuncios';
 import { ImovelPage } from './pages/ProductPage/ImovelPage';
 import { Navbar } from './shared/components/Navbar';
  
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Navbar/>
       {/* <ImovelPage/> */}
-      <HomePage/>
+      <Anuncios/>
     </div>
   );
 }

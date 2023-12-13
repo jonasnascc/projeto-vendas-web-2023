@@ -6,6 +6,7 @@ export const Navbar = () => {
     return (
         <NavbarContainer>
             <MenuButton style={{color:"white", fontWeight:"bold"}}>Início</MenuButton>
+            <MenuButton style={{color:"white", fontWeight:"bold"}}>Anuncios</MenuButton>
             <MenuButton style={{color:"white", fontWeight:"bold"}}>Quem somos</MenuButton>
             <MenuButton style={{color:"white", fontWeight:"bold"}}>Contato</MenuButton>
         </NavbarContainer>
