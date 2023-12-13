@@ -8,10 +8,6 @@ import { AuthContext } from '../../contexts/auth';
 import axios from 'axios'
 
 function LoginPage (props) {
-
-    
-
-
     const [login, setLogin] = useState('')
     const [senha, setSenha] = useState('')
 
@@ -20,9 +16,8 @@ function LoginPage (props) {
         const usuario = {
             login,
             senha
-           
-
         }
+        
         console.log("submit", {login, senha});
         axios.post('http://localhost:8080/Api/login', usuario)
             .then(resposta => {
@@ -32,7 +27,6 @@ function LoginPage (props) {
                  console.log(erro);
             })
 
-        
     }
 
 

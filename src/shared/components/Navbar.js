@@ -1,18 +1,53 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
+import { Navigate } from "react-router";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+const menuItems = [
+    {
+        label: "Início",
+        path: "/"
+    },
+    {
+        label: "Anúncios",
+        path: "/anuncios"
+    },
+    {
+        label: "Quem somos",
+        path: "/sobre"
+    }
+]
 
 export const Navbar = () => {
     return (
         <NavbarContainer>
-            <MenuButton style={{color:"white", fontWeight:"bold"}}>Início</MenuButton>
-            <MenuButton style={{color:"white", fontWeight:"bold"}}>Anuncios</MenuButton>
-            <MenuButton style={{color:"white", fontWeight:"bold"}}>Quem somos</MenuButton>
-            <MenuButton style={{color:"white", fontWeight:"bold"}}>Contato</MenuButton>
+            {
+                menuItems.map(item => {
+                    return <MenuButton label={item.label} path={item.path}/>
+                })
+            }
         </NavbarContainer>
     )
 }
 
+
+export const MenuButton = ({label = "", path = "/", ...other}) => {
+    return (
+        <MenuBtn 
+            {...other} 
+            style={{color:"white", fontWeight:"bold"}}
+        >
+            <Link to={path} style={{ textDecoration: 'none', color : "inherit"}}>
+                {label}
+            </Link>
+        </MenuBtn>
+    )
+}
+
+const LinkBtn = styled(Link)`
+    text-decoration:none;
+`
 
 
 const NavbarContainer = styled(Box)`
@@ -28,7 +63,7 @@ const NavbarContainer = styled(Box)`
     justify-content: center;
 `
 
-const MenuButton = styled(Button)`
+const MenuBtn = styled(Button)`
     font-weight : bold;
     padding: 6px 8px;
     text-decoration: none;

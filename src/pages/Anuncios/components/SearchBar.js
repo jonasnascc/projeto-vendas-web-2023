@@ -29,7 +29,7 @@ export const SearchBar = ({onSearchChange = (value) => {}}) => {
 
 const SearchBarContainer = styled(Box)`
     background-color : #c1c2ba;
-    min-height : 80px;
+    min-height : 50px;
     width : 100%;
     z-index: 1;
     top: 0;

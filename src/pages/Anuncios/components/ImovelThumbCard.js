@@ -45,6 +45,7 @@ const PriceBox = styled(Box)`
     background-color: white;
     z-index: 1;
     width: 100%;
+    text-align: center;
 `
 
 const Info = styled(Box)`
