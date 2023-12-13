@@ -1,4 +1,3 @@
-
 import React, { Children, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, AuthContext } from "./contexts/auth";
@@ -7,7 +6,6 @@ import { AuthProvider, AuthContext } from "./contexts/auth";
 
 import LoginPage from "./Componentes/LoginPage/LoginPage";
 import SingupPage from "./Componentes/LoginPage/SingupPage";
-
 
 function App() {
 
@@ -33,7 +31,6 @@ function App() {
 
 
     <div className="App">
-
       <Router>
         <AuthProvider>
 
@@ -47,9 +44,7 @@ function App() {
 
       </Router>
 
-
     </div>
-
 
 
   );
