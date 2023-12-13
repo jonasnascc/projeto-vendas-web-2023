@@ -1,4 +1,5 @@
 import { Box, Button } from "@mui/material";
+import { Stack } from "@mui/system";
 import React from "react";
 import { Navigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -22,15 +23,22 @@ const menuItems = [
 export const Navbar = () => {
     return (
         <NavbarContainer>
-            {
-                menuItems.map(item => {
-                    return <MenuButton label={item.label} path={item.path}/>
-                })
-            }
+            <Stack direction={"row"}>
+                {
+                    menuItems.map(item => {
+                        return <MenuButton label={item.label} path={item.path}/>
+                    })
+                }
+
+                <LoginBox>
+                    <Button variant="contained"><Link to="/login" style={{ textDecoration: 'none', color : "inherit"}}>Login</Link></Button>
+                </LoginBox>
+            </Stack>
+            
+            
         </NavbarContainer>
     )
 }
-
 
 export const MenuButton = ({label = "", path = "/", ...other}) => {
     return (
@@ -44,6 +52,11 @@ export const MenuButton = ({label = "", path = "/", ...other}) => {
         </MenuBtn>
     )
 }
+
+const LoginBox = styled(Box)`
+    position:absolute;
+    right:50px;
+`
 
 const LinkBtn = styled(Link)`
     text-decoration:none;

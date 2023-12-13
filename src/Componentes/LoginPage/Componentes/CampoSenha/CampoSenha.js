@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { useState } from "react";
+import { Typography } from '@mui/material';
 function CampoSenha(props) {
     const aoDigitar = (evento) => {
-        props.aoAltera(evento.target.value)
+        props.aoAlterar(evento.target.value)
     }
     const [passwordShown, setPasswordShown] = useState(false);
 
@@ -13,27 +14,20 @@ function CampoSenha(props) {
     };
 
     return (
-        <div>
-            <EmailLabel>{props.label}</EmailLabel>
+        <Container>
+            <Typography>{props.label}</Typography>
             <EmailInput type={passwordShown ? "text" : "password"} value={props.valor} onChange={aoDigitar} />
-            <BotaoPS onClick={togglePassword}>{passwordShown ? "Hide" : "Show"}</BotaoPS>
-        </div>
+            {/* <BotaoPS onClick={togglePassword}>{passwordShown ? "Hide" : "Show"}</BotaoPS> */}
+        </Container>
 
     )
 
 }
 export default CampoSenha;
 
-const EmailLabel = styled.label`
-    position: relative;
-    color: #6F6F6F;
-    font-family: 'Laila';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    margin-right: 50%;
-    margin-left: 10%;
-`;
+const Container = styled.div`
+    text-align:center;
+`
 
 const EmailInput = styled.input`
     color: #6F6F6F;
@@ -47,7 +41,6 @@ const EmailInput = styled.input`
     font-size: 16px;
     line-height: 31px;  
     box-sizing: border-box;
-    margin-left: 10%;
     margin-bottom: 1rem;
     
 `;

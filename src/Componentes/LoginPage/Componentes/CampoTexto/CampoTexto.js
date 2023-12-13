@@ -1,32 +1,26 @@
+import { Typography } from '@mui/material';
 import styled from 'styled-components';
 
 function CampoTexto(props) {
     const aoDigitar = (evento) => {
-        props.aoAltera(evento.target.value)
+        props.aoAlterar(evento.target.value)
 
     }
 
     return (
-        <div>
-            <EmailLabel>{props.label}</EmailLabel>
+        <Container>
+            <Typography>{props.label}</Typography>
             <EmailInput value={props.valor} onChange={aoDigitar} />
-        </div>
+        </Container>
 
     )
 
 }
 export default CampoTexto;
 
-const EmailLabel = styled.label`
-    position: relative;
-    color: #6F6F6F;
-    font-family: 'Laila';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    margin-right: 50%;
-    margin-left: 10%;
-`;
+const Container = styled.div`
+    text-align:center;
+`
 
 const EmailInput = styled.input`
     color: #6F6F6F;
@@ -40,7 +34,6 @@ const EmailInput = styled.input`
     font-size: 16px;
     line-height: 31px;  
     box-sizing: border-box;
-    margin-left: 10%;
     margin-bottom: 1rem;
     
 `;

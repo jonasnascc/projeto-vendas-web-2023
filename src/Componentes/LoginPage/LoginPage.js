@@ -4,8 +4,9 @@ import CampoTexto from './Componentes/CampoTexto/CampoTexto';
 import { useState , useContext} from 'react';
 import CampoSenha from './Componentes/CampoSenha/CampoSenha';
 
-import { AuthContext } from '../../contexts/auth'; 
 import axios from 'axios'
+import { Button, Card, Grid, Typography } from '@mui/material';
+import { Box, Container } from '@mui/system';
 
 function LoginPage (props) {
     const [login, setLogin] = useState('')
@@ -17,7 +18,7 @@ function LoginPage (props) {
             login,
             senha
         }
-        
+
         console.log("submit", {login, senha});
         axios.post('http://localhost:8080/Api/login', usuario)
             .then(resposta => {
@@ -31,108 +32,56 @@ function LoginPage (props) {
 
 
     return (
-        <Fundo>
-            <CardContainer>
-                <CardText>
-                    <TextoBemVindo> BEM VINDO AO PORTAL DE GOVERNANÇA </TextoBemVindo>
-                    <TextoDesktop> DESKTOP </TextoDesktop>
-                    
-                    <TextoDescritivo> Aqui você vai conhecer quem somos e o que fazemos! </TextoDescritivo>
-                </CardText>
-                <FormularioFormat onSubmit={handleSubmit}>
-                    <Logo src='/imagens/logoo.png' alt='logo'/>
-                    <CampoTexto
-                        label="Email:"
-                        valor = {login}
-                        aoAltera = {valor => setLogin(valor)}
-            
-                    />
-                    <CampoSenha
-                        label="Senha:"
-                        valor = {senha}
-                        aoAltera = {valor => setSenha(valor)}
+        <Container>
+            <LoginCard sx={{height:"500px", display:"flex", justifyContent:"center", alignItems:"center", margin:"40px"}}>
+                <Grid container>
+                    <Grid item xs={12} md={6} padding={"20px"} textAlign={"center"}>
+                        <Typography variant="h1">J & J Imóveis</Typography>:
+                    </Grid>
 
-                    />
+                    <Grid item xs={12} md={6} padding={"20px"}>
+                        <Card>
+                            <Formulario>
+                                <CampoTexto
+                                    label="Email:"
+                                    valor = {login}
+                                    aoAlterar = {valor => setLogin(valor)}
+                        
+                                />
+                                <CampoSenha
+                                    label="Senha:"
+                                    valor = {senha}
+                                    aoAlterar = {valor => setSenha(valor)}
 
-                    <Botao label ="Entrar"/>
-                </FormularioFormat>
+                                />
 
-
-            </CardContainer>
-        </Fundo>
+                                <Box sx={{textAlign:"center"}}>
+                                    <Button 
+                                        variant='contained' 
+                                        type='submit' 
+                                        onClick={handleSubmit}
+                                        fullWidth
+                                    >
+                                        Entrar
+                                    </Button>
+                                </Box>
+                            </Formulario>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </LoginCard>
+                
+        </Container>
 
     )
 } 
 export default LoginPage
 
-const CardContainer = styled.div`
-    width: 65rem;
-    height: 42rem;
-    display: flex;
-    justify-content: center;
-    padding: 4rem;
-    position: relative;
-    margin-left: 15%;
-    @media (min-width: 1920px) {
-        width: 70%;
-        height: 48rem;
-    }
-   
-`;
+const Formulario = styled.form`
+    margin:40px;
+`
 
-const CardText = styled.section`
-    background-color: #E4DADA;
-    color: #732929;
-    font-family: 'Laila';
-    font-size: 50%;
-    text-align: center;
-    border-radius: 10px 0px 0px 10px;
-    display: inline-block;
-    width: 35%;
-    height: 100%;
-    margin-top: 0rem;
-`;
-
-const TextoBemVindo = styled.p`
-    font-family: 'Laila';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    text-align: center;
-    margin-top: 5rem;
-`;
-const TextoDesktop = styled.p`
-    font-family: 'Laila';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    text-align: center;
-`;
-const TextoDescritivo = styled.p`
-    font-family: 'Laila';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    text-align: center;
-    padding: 4rem;
-`;
-const FormularioFormat = styled.form`
-    background: #ECECEC;
-    border-radius: 0px 10px 10px 0px;
-    width: 50%;
-    height: 100%;
-    display: inline-block;
-`;
-
-const Logo = styled.img`
-    width: 100%;
-    margin-top: 1rem;
-`;
-const Fundo = styled.div `
-    background-color: #732929;
-    height: 28rem;
-    @media (min-width: 1920px) {
-        height: 38rem;
-    }
-    
-`;
+const LoginCard = styled(Card)`
+    width:"100%";
+    min-height: "80vh"
+`
