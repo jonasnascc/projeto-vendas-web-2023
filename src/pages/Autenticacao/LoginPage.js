@@ -1,35 +1,53 @@
 import styled from 'styled-components';
-import Botao from '../../Componentes/LoginPage/Componentes/Botao/Botao';
 import CampoTexto from '../../Componentes/LoginPage/Componentes/CampoTexto/CampoTexto';
-import { useState , useContext} from 'react';
+import { useContext, useState} from 'react';
 import CampoSenha from '../../Componentes/LoginPage/Componentes/CampoSenha/CampoSenha';
 
-import axios from 'axios'
-import { Button, Card, Grid, Typography } from '@mui/material';
-import { Box, Container } from '@mui/system';
+import { Button, Card } from '@mui/material';
+import { Box } from '@mui/system';
 import { Link, Navigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/auth';
+import axios from '../../api/axios';
+
+const LOGIN_URL = "/login"
 
 function LoginPage (props) {
-    const [login, setLogin] = useState('')
-    const [senha, setSenha] = useState('')
+    const [login, setLogin] = useState("");
+    const [senha, setSenha] = useState("");
+    const {setAuth} = useContext(AuthContext)
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
-        
-        const usuario = {
-            login,
-            senha
+        try{
+        const response = await axios.post(
+                    LOGIN_URL,
+                    JSON.stringify({login, senha}),
+                    {
+                        headers: {"Content-Type" : "application/json" },
+                        withCredentials: true
+                    }
+            )
+                
+            console.log(JSON.stringify(response?.data));
+
+            const accessToken = response?.data?.token;
+            const identifier = response?.data?.identifier;
+
+            setAuth({login, senha, identifier, accessToken})
+        } catch(err) {
+           /* handle errors */
+            if(!err?.response){
+                console.log("No server response")
+            }
+            else if(err?.response?.status === 400){
+                console.log("Missing username or Password")
+            }
+            else if(err?.response?.status === 401){
+                console.log("Unauthorized")
+            }else{
+                console.log("Login error")
+            }
         }
-
-        console.log("submit", {login, senha});
-        axios.post('http://localhost:8080/Api/login', usuario)
-        .then(resposta => {
-            <Navigate to="/anuncios"/>
-        })
-        .catch(erro => {
-                console.log(erro);
-        })
-
     }
 
 
